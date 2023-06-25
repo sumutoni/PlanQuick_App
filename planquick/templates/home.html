@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<body>
+		<div class="header">
+			<section class="logo">
+				<h1 class="logoname">PlanQuick</h1>
+			</section>
+			<section class="links">
+				<p>FAQs</p>
+				<p>Contact us</p>
+                {% if user.is_authenticated %}
+                    Welcome {{ user }}
+                    <p><a href="{% url 'account_logout' %}">Log Out</a></p>
+                {% else %}
+                    <p>You are not logged in</p>
+                    <p><a href="{% url 'account_login' %}">Log In</a> |
+                    <a href="{% url 'account_signup' %}">Sign Up</a></p>
+                {% endif %}
+			</section>
+		</div>
+	</body>
+{% endblock content %}
