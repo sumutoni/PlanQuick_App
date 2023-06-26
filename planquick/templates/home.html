@@ -6,13 +6,10 @@
 <body>
 		<div class="header">
 			<section class="logo">
-				<h1 class="logoname">PlanQuick</h1>
+				<h1 class="logoname">PlanQuick Home</h1>
 			</section>
 			<section class="links">
-				<p>FAQs</p>
-				<p>Contact us</p>
                 {% if user.is_authenticated %}
-                    Welcome {{ user }}
                     <p><a href="{% url 'account_logout' %}">Log Out</a></p>
                 {% else %}
                     <p>You are not logged in</p>
