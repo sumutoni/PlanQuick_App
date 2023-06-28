@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>PQ-Log In</title>
-	<link rel="stylesheet" type="text/css" href="styles/login.css">
-	<link rel="stylesheet" type="text/css" href="styles/common.css">
-</head>
+{% extends '_base.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% Static 'styles/login.css' %}">
+<link rel="stylesheet" href="{% Static 'styles/common.css' %}">
+{% endblock %}
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
 <body>
 	<div class="header">
 			<h1><a href="index.html">PlanQuick</a></h1>
@@ -23,4 +25,4 @@
 		</div>
 	</main>
 </body>
-</html>
+{% endblock content %}
