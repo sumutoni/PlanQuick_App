@@ -1,5 +1,8 @@
 {% extends '_base.html' %}
-
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
 {% block title %}Sign Up{% endblock title %}
 
 {% block content %}

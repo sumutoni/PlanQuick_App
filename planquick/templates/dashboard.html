@@ -1,5 +1,8 @@
 {% extends '_base.html' %}
-
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
 {% block title %}dashboard{% endblock title %}
 {% block content %}
 <body>
@@ -16,5 +19,6 @@
                  <p><a href="{% url 'account_logout' %}">Log Out</a></p>
 			</section>
 		</div>
+		<div> <a href="{% url 'upload' %}">upload</a></div>
 	</body>
 {% endblock %}
