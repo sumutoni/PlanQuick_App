@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>PlanQuick</title>
-		<link rel="stylesheet" type="text/css" href="styles/index.css">
-		<link rel="stylesheet" type="text/css" href="styles/common.css">
-	</head>
+{% extends '_base.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+{% endblock %}
+{% block title %}Home{% endblock title %}
 	<body>
 		<header class="header">
 			<h1>PlanQuick</h1>
