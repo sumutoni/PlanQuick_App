@@ -1,24 +1,21 @@
-{% extends '_base.html' %}
-{% load static %}
-{% block extrahead %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-{% endblock %}
-{% block title %}dashboard{% endblock title %}
-{% block content %}
-<body>
-    <div id="profile">
-        <a href="{% url 'profile' %}">Profile</a>
-    </div>
-    <div id="pivot-chart-container"></div>
-		<div class="header">
-			<section class="logo">
-				<h1 class="logoname">PlanQuick Dashboard</h1>
-			</section>
-			<section class="links">
-                Hello, {{ user.username|default:'Guest' }}!
-                 <p><a href="{% url 'account_logout' %}">Log Out</a></p>
-			</section>
-		</div>
-		<div> <a href="{% url 'upload' %}">upload</a></div>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PlanQuick</title>
+		<link rel="stylesheet" type="text/css" href="styles/dashboard.css">
+		<link rel="stylesheet" type="text/css" href="styles/common.css">
+	</head>
+	<body>
+		<section class="header">
+			<header>
+				<span class="user-info">
+					<img src="images/person.jpg">
+					<div class="user">
+						<h3>Username</h3>
+						<h5>Log out</h5>
+					</div>
+				</span>
+			</header>
+		</section>
 	</body>
-{% endblock %}
+</html>	
