@@ -15,12 +15,14 @@
 					<p class="statement"><img src="{% static 'images/statement.jpg' %}">Statement</p>
 					<p class="chart"><img src="{% static 'images/graph.png' %}">Chart</p>
 					<p class="settings"><img src="{% static 'images/settings.png' %}">Settings</p>
+					<p class="upload"><img src="{% static 'images/settings.png' %}"><a href="{% url 'upload' %}">Upload</a></p>
 					<p class="help"><img src="{% static 'images/settings.png' %}">Help</p>
 				</div>
 			</div>
 			<div class="dash-info">
 				<div class="dashboard">
 					<h1>Dashboard</h1>
+					<p><a href="{% url 'account_logout' %}">Log Out</a></p>
 				</div>
 				<div class="balance">
 					<h3>Account Balance: </h3>
