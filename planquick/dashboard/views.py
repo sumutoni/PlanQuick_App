@@ -105,7 +105,8 @@ def UploadView(request):
         # Save entries
         for mydict in result:
             Transactions.owner = request.user.email
-            c, new = Transactions.objects.get_or_create(**mydict)
+            c, new = Transactions.objects.filter(owner=request.user.email).get_or_create(**mydict)
+            #c, new = Transactions.objects.get_or_create(**mydict)
             if new:
                 Transactions.save(c)    
         """
