@@ -3,30 +3,42 @@
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock %}
-{% block title %}dashboard{% endblock title %}
 {% block content %}
-<body>
-    <div id="profile">
-        <a href="{% url 'profile' %}">Profile</a>
-    </div>
-	<div> <a href="{% url 'upload' %}">upload</a></div>
-    <div id="pivot-chart-container"></div>
-		<div class="header">
-			<section class="logo">
-				<h1 class="logoname">PlanQuick Dashboard</h1>
-			</section>
-			<section class="links">
-                Hello, {{ user.username|default:'Guest' }}!
-                 <p><a href="{% url 'account_logout' %}">Log Out</a></p>
-			</section>
-		</div>
-		{% if messages %}
-		<ul class="messages">
-    		{% for message in messages %}
-    		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    		{% endfor %}
-		</ul>
-		{% endif %}
-	</body>
-
-{% endblock %}
+		<main class="dash-section">
+			<div class="sidebar">
+				<div class="user">
+					<p><img src="{% static 'images/person.jpg' %}">{{user.username}}</p>
+				</div>
+				<div class="tools">
+					<p class="profile"><img src="{% static 'images/profile.jpg' %}">Profile</p>
+					<p class="summary-icon"><img src="{% static 'images/summary.jpg' %}">Summary</p>
+					<p class="statement"><img src="{% static 'images/statement.jpg' %}">Statement</p>
+					<p class="chart"><img src="{% static 'images/graph.png' %}">Chart</p>
+					<p class="settings"><img src="{% static 'images/settings.png' %}">Settings</p>
+					<p class="help"><img src="{% static 'images/settings.png' %}">Help</p>
+				</div>
+			</div>
+			<div class="dash-info">
+				<div class="dashboard">
+					<h1>Dashboard</h1>
+				</div>
+				<div class="balance">
+					<h3>Account Balance: </h3>
+				</div>
+				<div class="summary">
+					<h3>Summary</h3>
+					<div class="sub-summary">
+						<div class="received">
+							<h4>Received</h4>
+						</div>
+						<div class="spent">
+							<h4>Spent</h4>
+						</div>
+					</div>
+				</div>
+				<div class="analytics">
+					<h3>Analytics</h3>	
+				</div>
+			</div>
+		</main>
+{% endblock content %}

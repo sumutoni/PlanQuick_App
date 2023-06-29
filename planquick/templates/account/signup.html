@@ -1,12 +1,12 @@
 {% extends '_base.html' %}
 {% load static %}
 {% block extrahead %}
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock %}
 {% block title %}Sign Up{% endblock title %}
 {% block content %}
-<body>
-	<main class="form-section">
+<main>
+	<div class="form-section">
 		<div class="form">
 			<form method="post">
 				<h3>Sign Up</h3>
@@ -16,6 +16,6 @@
 				<p>Already have an account? <a href="{% url 'account_login' %}">Log in</a></p>
 			</form>
 		</div>
-	</main>
-</body>
+	</div>
+</main>
 {% endblock content %}

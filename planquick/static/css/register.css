@@ -23,7 +23,7 @@
 	text-decoration: none;
 }
 .form-section{
-	color: #2F4F4F;
+	color: #dfecdf;
 	font-size: 15px;
 	height: 50%;
 	width: 100%;
@@ -34,7 +34,7 @@
 .form{
 	display: flex;
 	justify-content: center;
-	background-color: #dfecdf;
+	background-color: #2F4F4F;
 	font-family: "Arial", monospace;
 	height: 100%;
 	width: 300px;
@@ -50,14 +50,14 @@
 	justify-content: center;
 }
 .form a{
-	color: #2F4F4F;
+	color: #dfecdf;
 }
 input{
 	margin-bottom: 20px;
 }
 .create{
 	background-color: #90bb90;
-	color: #dfecdf;
+	color: #2F4F4F;
 	width: 50%;
 	height: 35px;
 	border-radius: 20px;

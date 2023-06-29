@@ -1,3 +1,4 @@
+from typing import Self
 from django.views.generic import TemplateView
 from .forms import UploadForm
 from django.shortcuts import render, redirect
@@ -68,6 +69,12 @@ def UploadView(request):
                     dct['trn_type'] = "Pay Bill"
                 elif re.search("paid to", i):
                     dct['trn_type'] = "Merchant Payment"
+                elif re.search("Insufficient funds", i):
+                    continue
+                elif re.search("insufficient funds", i):
+                    continue
+                elif re.search("Failed.*", i):
+                    continue
                 else:
                     dct['trn_type'] = "Recieved"
                 
@@ -91,16 +98,17 @@ def UploadView(request):
                 except:
                     pass
                 result.append(dct)
+        
         # Delete entries
         Transactions.objects.all().delete()
         """
         # Save entries
         for mydict in result:
-            
-            Transactions.objects.get_or_create(**mydict)
-            Transactions.owner = request.user.username
+            Transactions.owner = request.user.email
+            c, new = Transactions.objects.get_or_create(**mydict)
+            if new:
+                Transactions.save(c)    
         """
-
         messages.add_message(request, messages.SUCCESS, "Success!")
         return redirect('/dashboard/')
     else:
