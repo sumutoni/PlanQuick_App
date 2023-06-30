@@ -1,7 +1,8 @@
 from typing import Self
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DeleteView
 from .forms import UploadForm
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import Transactions
@@ -24,6 +25,7 @@ class ContactPageView(TemplateView):
 
 class ProfilePageView(TemplateView):
       template_name = 'profile.html'
+
 
 
 def UploadView(request):
@@ -97,21 +99,28 @@ def UploadView(request):
                     dct['trn_date'] = datetime.datetime.strptime(day, '%d-%m-%y').date()
                 except:
                     pass
+                dct['owner'] = request.user.email
                 result.append(dct)
-        
+
         # Delete entries
-        Transactions.objects.all().delete()
-        """
-        # Save entries
+        #Transactions.objects.all().delete()
+        
+        #save entries
         for mydict in result:
-            Transactions.owner = request.user.email
-            c, new = Transactions.objects.filter(owner=request.user.email).get_or_create(**mydict)
-            #c, new = Transactions.objects.get_or_create(**mydict)
-            if new:
-                Transactions.save(c)    
-        """
+            try:
+                c, new = Transactions.objects.get_or_create(**mydict)
+            except:
+                continue
+
         messages.add_message(request, messages.SUCCESS, "Success!")
         return redirect('/dashboard/')
     else:
         form = UploadForm()
     return render(request, 'upload.html', {'form':form})
+
+
+def DeleteUpload(request):
+        dels = Transactions.objects.filter(owner=request.user.email)
+        dels.delete()
+        return redirect('/dashboard/')
+
