@@ -10,6 +10,23 @@
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
   {% endblock %}
 </head>
+<header>
+  <h1><a href="{% url 'home' %}">PlanQuick</h1>
+  <nav class="nav-header">
+    <ul class="links">
+      <li>FAQs</li>
+      <li><a href="#footer">Contact us</a></li>
+       {% if user.is_authenticated %}
+         <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+         <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+       {% else %}
+         <li><a href="{% url 'account_login' %}">Log In</a></li>
+         <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+       {% endif %}
+    </ul>
+  </nav>
+   </nav>
+</header>
 <body>
   <main>
     {% block content %}
