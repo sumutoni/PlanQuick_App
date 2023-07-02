@@ -82,12 +82,12 @@
       chart.render();
 
       var option3 = {
-        series: [{{amt_sent}},{{amt_received}},{{amt_deposited}},{{amt_bundle}}, {{amt_merchant}}],
+        series: [{{amt_sent}},{{amt_received}},{{amt_bundle}}, {{amt_merchant}}, {{amt_paybill}}],
         chart: {
         width: 380,
         type: 'donut',
       },
-      labels: ['sent','received','deposit','bundle','merchant'],
+      labels: ['sent','received','bundle','merchant', 'paybill'],
       responsive: [{
         breakpoint: 480,
         options: {

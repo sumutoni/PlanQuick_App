@@ -330,7 +330,7 @@ def UploadView(request):
                     dct['trn_type'] = "Customer Transfer"
                 elif re.search("transferred to", i):
                     dct['trn_type'] = "Transfer"
-                elif re.search("withdraw", i):
+                elif re.search("Withdraw", i):
                     dct['trn_type'] = "Withdraw"
                 elif re.search("for account", i):
                     dct['trn_type'] = "Pay Bill"
