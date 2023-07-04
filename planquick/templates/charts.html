@@ -1,0 +1,158 @@
+{% extends 'dashboard.html' %}
+{% load static%}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/apexcharts.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+<div class="card-columns">
+    <div class="card bg-light">
+      <div class="card-body text-center" id='chart1'>
+        <p class="card-text">Total Transactions</p>
+      </div>
+    </div>
+    <div class="card bg-danger">
+      <div class="card-body text-center" id='chart2'>
+        <p class="card-text">Total Transactions</p>
+      </div>
+    </div>
+    <div class="card bg-light">
+      <div class="card-body text-center" id='chart3'>
+        <p class="card-text">Total Transactions</p>
+      </div>
+    </div>
+    <div class="card bg-light">
+      <div class="card-body text-center" id='chart4'>
+        <p class="card-text">Total Transactions</p>
+      </div>
+    </div>
+</div>
+
+<script src="{% static 'js/apexcharts.js' %}"></script>
+<script src="{% static 'js/apexcharts.min.js' %}"></script>
+
+
+<script>
+      var options1 = {
+        chart: {
+          type: 'bar'
+        },
+        noData: [{
+          text: undefined,
+          align: 'center',
+          verticalAlign: 'middle',
+          offsetX: 0,
+          offsetY: 0,
+          style: {
+            color: undefined,
+            fontSize: '14px',
+            fontFamily: undefined
+          }
+        }],
+        series: [{
+          name: 'sales',
+          data: [{{amt_sent}},{{amt_received}},{{amt_deposited}},{{amt_bundle}}, {{amt_merchant}}, {{amt_paybill}}]
+        }],
+        xaxis: {
+          categories: ['sent','received','deposit','bundle','merchant', 'paybill']
+        }
+      }
+      
+      var chart = new ApexCharts(document.querySelector("#chart1"), options1);
+      
+      chart.render();
+
+      var options2 = {
+        chart: {
+          type: 'line'
+        },
+        series: [{
+          name: 'sales',
+          data: [{{amt_sent}},{{amt_received}},{{amt_deposited}},{{amt_bundle}}, {{amt_merchant}}]
+        }],
+        xaxis: {
+          categories: ['sent','received','deposit','bundle','merchant']
+        }
+      }
+      
+      var chart = new ApexCharts(document.querySelector("#chart2"), options2);
+      
+      chart.render();
+
+      var option3 = {
+        series: [{{amt_sent}},{{amt_received}},{{amt_bundle}}, {{amt_merchant}}, {{amt_paybill}}],
+        chart: {
+        width: 380,
+        type: 'donut',
+      },
+      labels: ['sent','received','bundle','merchant', 'paybill'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart3"), option3);
+      chart.render();
+
+      var options4 = {
+        series: [{
+        name: 'Sent',
+        data: [0,{{Sent_jan}}, {{Sent_feb}}, {{Sent_mar}}, {{Sent_apr}}, {{Sent_may}}, {{Sent_jun}}, {{Sent_jul}}, {{Sent_aug}}, {{Sent_sep}}, {{Sent_oct}}, {{Sent_nov}}, {{Sent_dec}}, 0]
+      }, {
+        name: 'Received',
+        data: [0, {{Received_jan}}, {{Received_feb}}, {{Received_mar}}, {{Received_apr}}, {{Received_may}}, {{Received_jun}}, {{Received_jul}}, {{Received_aug}}, {{Received_sep}}, {{Received_oct}}, {{Received_nov}}, {{Received_dec}}, 0]
+      }, {
+        name: 'Merchant',
+        data: [0,{{Merchant_jan}}, {{Merchant_feb}}, {{Merchant_mar}}, {{Merchant_apr}}, {{Merchant_may}}, {{Merchant_jun}}, {{Merchant_jul}}, {{Merchant_aug}}, {{Merchant_sep}}, {{Merchant_oct}}, {{Merchant_nov}}, {{Merchant_dec}}, 0]
+      }],
+        chart: {
+        type: 'bar',
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '55%',
+          endingShape: 'rounded'
+        },
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ['transparent']
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      },
+      yaxis: {
+        title: {
+          text: 'amount'
+        }
+      },
+      fill: {
+        opacity: 1
+      }
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart4"), options4);
+      chart.render();
+      
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% endblock content %}
