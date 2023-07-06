@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}QuickPlan{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
+  {% block extrahead %}
+  <!-- -->
+  {% endblock %}
+</head>
+<header>
+  <h1><a href="{% url 'home' %}">PlanQuick</h1>
+  <nav class="nav-header">
+    <ul class="links">
+      <li>FAQs</li>
+      <li><a href="#footer">Contact us</a></li>
+       {% if user.is_authenticated %}
+         <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+         <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+
+       {% else %}
+         <li><a href="{% url 'account_login' %}">Log In</a></li>
+         <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+       {% endif %}
+    </ul>
+  </nav>
+   </nav>
+</header>
+<body>
+  <main>
+    {% block content %}
+    {% endblock content %}
+  </main>
+</body>
+<footer id="footer">
+  <div class="info">
+    <div class="contact">
+      <h3>You can reach us here</h3>
+      <div class="contact-info">
+        <a href="mailto:charlesgitahi.cn@gmail.com"><img src="{% static 'images/email.png' %}"></a>
+        <a href="mailto:steumutoni@gmail.com"><img src="{% static 'images/email.png' %}"></a>
+        <a href="#"></a><img src="{% static 'images/phone.png' %}"></a>
+      </div>
+    </div>
+    <div class="socials">
+      <h3>Check us out</h3>
+        <div class="social-logo">
+					<a href="https://github.com/sumutoni/PlanQuick_App"><img src="{% static 'images/git.jpeg' %}"></a>
+					<a href="#"><img src="{% static 'images/twitter.jpg' %}"></a>
+					<a href="https://github.com/sumutoni"><img src="{% static 'images/git.jpeg' %}"></a>
+					<a href="https://github.com/chaloh-debug"><img src="{% static 'images/git.jpeg' %}"></a>
+				</div>
+    </div>
+  </div>
+</footer>	
+</html>

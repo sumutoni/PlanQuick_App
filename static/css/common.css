@@ -1,0 +1,21 @@
+html{
+	scroll-behavior: smooth;
+}
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+/*
+body {
+	background-image: url(../images/savings.jpg)
+}*/
+
+.bg {
+	background-image: url( "../images/savings1.jpg");
+	opacity: 1;
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }

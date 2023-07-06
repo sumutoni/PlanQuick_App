@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+{% endblock %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<body>
+	<div class="bg">
+		<div>
+			<h2>PlanQuick!Your budgeting and mobile banking accounting partner.</h2>
+		</div>
+		<!-- About Container -->
+		<div class="" style="max-width:700px">
+			<h2> Your Dashboard</h2>
+			<a><img src="{% static 'images/photo3.jpg' %}"></a>
+		</div>
+		<div class="" style="max-width:700px">
+			<h2> Your Charts</h2>
+			<a><img src="{% static 'images/photo2.jpg' %}"></a>
+		</div>
+		<div>
+		<div class="" style="max-width:700px">
+			<h2> Your Statements</h2>
+			<a><img src="{% static 'images/photo1.jpg' %}"></a>
+		</div>
+		</div>
+		
+		<!-- About Container -->
+		<div class="">
+			<div class="" style="max-width:700px">
+			<h2 class="">ABOUT PlanQuick</h2>
+			<p>PlanQuick is a platform that allows you to account for your mobile banking transactions. It provides you with an easy to use interface where you can upload your data. We'll use that data to provide you with your spending and received transactions in some easy to read charts. We wil also provide sub-totals of your transactions in different categories.</p>
+			<p> We as planquick recognize the difficulty in accountability of mobile transactions and are here to provide you with a user friendly solution to that. Our aim is to expand the platform to allow you to create your own budgets and keep track of all your spending habits.</p>
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock content %}
