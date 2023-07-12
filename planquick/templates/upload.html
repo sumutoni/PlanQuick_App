@@ -1,0 +1,21 @@
+{% extends 'dashboard.html' %}
+{% load static%}
+{% block title %}upload{% endblock title %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/dashboard2.css' %}">
+  <link rel="stylesheet" href="{% static 'css/common.css' %}">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+</head>
+<body>
+  <h1>Upload Page</h1>
+  <a href="{% url 'dashboard' %}">Dashboard</a>
+  <form action="{% url 'upload' %} "method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <p>
+        {{form.file}}
+    </p>
+    <p><input type="submit" value="upload"/></p>
+  </form>
+</body>
+{% endblock content %}

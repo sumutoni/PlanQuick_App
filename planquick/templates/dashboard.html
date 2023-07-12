@@ -1,0 +1,142 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PlanQuick</title>
+  		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="{% static 'css/dashboard2.css' %}">
+        <link rel="stylesheet" href="{% static 'css/common.css' %}">
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+		<link rel="stylesheet" href="{% static 'css/apexcharts.css' %}">
+	</head>
+	<body>
+		<main class="dash-section">
+			<div class="sidebar">
+				<div class="user">
+					
+						<p id="username"><img src="{% static 'images/person.jpg' %}">{{user.username}}</p>
+				</div>
+				<div class="tools">
+					<p class="summary-icon"><img src="{% static 'images/summary.jpg' %}"><a href="{% url 'dashboard' %}">Home</a></p>
+                    <p class="profile"><img src="{% static 'images/profile.jpg' %}"><a href="{% url 'profile' %}">Profile</a></p>
+					<p class="statement"><img src="{% static 'images/statement.jpg' %}"><a href="{% url 'statements' %}">Statements</a></p>
+					<p class="chart"><img src="{% static 'images/graph.png' %}"><a href="{% url 'charts' %}">Charts</a></p>
+                    <p class="upload"><img src="{% static 'images/upload.png' %}"><a href="{% url 'upload' %}">Upload</a></p>
+                    <p class="deletes"><img src="{% static 'images/delete.png' %}"><a href="{% url 'delete' %}">Delete</a></p>
+				</div>
+			</div>
+            {% block content %}
+			<div class="dash-info" id="dash-info">
+				<div class="dashboard">
+					<h1>Dashboard</h1>
+					<p><a href="{% url 'account_logout' %}">Log out</a></p>
+				</div>
+				<div class="balance">
+					<h3>Account Balance: </h3>
+				</div>
+				<div class="summary">
+					<h3>Summary</h3>
+					<div class="sub-summary">
+                        {% if transacted %}
+						<div class="received">
+							<h4>Received</h4>
+                            {{amt_received}}
+						</div>
+						<div class="sent">
+							<h4>Sent</h4>
+                            {{amt_sent}}
+						</div>
+                        <div class="merchant">
+							<h4>Merchant</h4>
+                            {{amt_merchant}}
+						</div>
+                        <div class="transacted">
+							<h4>Transacted</h4>
+                            {{transacted}}
+						</div>
+                        <div class="paybill">
+							<h4>PayBill</h4>
+                            {{amt_paybill}}
+						</div>
+                        <div class="bundle">
+							<h4>Bundle</h4>
+                            {{amt_bundle}}
+						</div>
+                        <div class="deposit">
+							<h4>Deposit</h4>
+                            {{amt_deposited}}
+						</div>
+                        <div class="withdraw">
+							<h4>Withdrawals</h4>
+                            {{amt_withdrawn}}
+						</div>
+                        {% endif %}
+					</div>
+				</div>
+				<div class="analytics">
+					<h3>Analytics</h3>
+                    <div class="card bg-light">
+                        <div class="card-body text-center" id='chart4'>
+                          <p class="card-text">Total Transactions</p>
+                        </div>
+                      </div>	
+				</div>
+                <script src="{% static 'js/apexcharts.js' %}"></script>
+			    <script src="{% static 'js/apexcharts.min.js' %}"></script>
+
+                <script>
+                    var options4 = {
+                        series: [{
+                        name: 'Sent',
+                        data: [0,{{Sent_jan}}, {{Sent_feb}}, {{Sent_mar}}, {{Sent_apr}}, {{Sent_may}}, {{Sent_jun}}, {{Sent_jul}}, {{Sent_aug}}, {{Sent_sep}}, {{Sent_oct}}, {{Sent_nov}}, {{Sent_dec}}, 0]
+                        }, {
+                        name: 'Received',
+                        data: [0, {{Received_jan}}, {{Received_feb}}, {{Received_mar}}, {{Received_apr}}, {{Received_may}}, {{Received_jun}}, {{Received_jul}}, {{Received_aug}}, {{Received_sep}}, {{Received_oct}}, {{Received_nov}}, {{Received_dec}}, 0]
+                        }, {
+                        name: 'Merchant',
+                        data: [0,{{Merchant_jan}}, {{Merchant_feb}}, {{Merchant_mar}}, {{Merchant_apr}}, {{Merchant_may}}, {{Merchant_jun}}, {{Merchant_jul}}, {{Merchant_aug}}, {{Merchant_sep}}, {{Merchant_oct}}, {{Merchant_nov}}, {{Merchant_dec}}, 0]
+                        }],
+                        chart: {
+                        type: 'bar',
+                        height: 350
+                        },
+                        plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '55%',
+                            endingShape: 'rounded'
+                        },
+                        },
+                        dataLabels: {
+                        enabled: false
+                        },
+                        stroke: {
+                        show: true,
+                        width: 2,
+                        colors: ['transparent']
+                        },
+                        xaxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        },
+                        yaxis: {
+                        title: {
+                            text: 'amount'
+                        }
+                        },
+                        fill: {
+                        opacity: 1
+                        }
+                        };
+                
+                        var chart = new ApexCharts(document.querySelector("#chart4"), options4);
+                        chart.render();
+                    </script>
+                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			</div>
+            {% endblock %}
+		</main>
+	</body>
+</html>	
