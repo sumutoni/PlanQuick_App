@@ -18,97 +18,13 @@
 </head>
 <body>
   <h1>Statements Page</h1>
-  <!--
-  <table>
-    <tr>
-      <td>
-        <h1>sent</h1>
-        {% if sent %}
-        {%for i in sent %}
-        <h2>{{ i.amount}}</h2>
-          <h2>{{ i.trn_date }}
-        {% endfor %}
-        {% else %}
-        <h1> Nothing to show</h1>
-        {% endif%}
-      </td>
-
-      <td>
-        <h1>Received</h1>
-        {% if received %}
-        {%for i in received %}
-        <h2>{{ i.amount}}</h2>
-          <h2>{{ i.trn_date }}
-        {% endfor %}
-        {% else %}
-        <h1> Nothing to show</h1>
-        {% endif%}
-      </td>
-      <td>
-        <h1>Withdrwal</h1>
-        {% if withdrawal %}
-        {%for i in withdrawal %}
-        <h2>{{ i.amount}}</h2>
-          <h2>{{ i.trn_date }}
-        {% endfor %}
-        {% else %}
-        <h1> Nothing to show</h1>
-        {% endif%}
-      </td>
-      <td>
-        <h1>Bundle</h1>
-        {% if bundle %}
-        {%for i in bundle %}
-        <h2>{{ i.amount}}</h2>
-          <h2>{{ i.trn_date }}
-        {% endfor %}
-        {% else %}
-        <h1> Nothing to show</h1>
-        {% endif%}
-      </td>
-      <td>
-        <h1>Deposit</h1>
-        {% if deposit %}
-        {%for i in deposit %}
-        <h2>{{ i.amount}}</h2>
-          <h2>{{ i.trn_date }}
-        {% endfor %}
-        {% else %}
-        <h1> Nothing to show</h1>
-        {% endif%}
-      </td>
-      <td>
-        <h1>Merchant</h1>
-        {% if merchant %}
-        {%for i in merchant %}
-        <h2>{{ i.amount}}</h2>
-          <h2>{{ i.trn_date }}
-        {% endfor %}
-        {% else %}
-        <h1> Nothing to show</h1>
-        {% endif%}
-      </td>
-      <td>
-        <h1>Paybill</h1>
-        {% if paybill %}
-        {%for i in merchant %}
-        <h2>{{ i.amount}}</h2>
-          <h2>{{ i.trn_date }}
-        {% endfor %}
-        {% else %}
-        <h1> Nothing to show</h1>
-        {% endif%}
-      </td>
-  </tr>
-  </table>
--->
 
   <table class='tg'>
     <thread>
       <tr>
-        <th>Trn_date</th>
-        <th>Trn_type</th>
-        <th>Trn_amount</th>
+        <th>Transaction date</th>
+        <th>Transaction type</th>
+        <th>Amount</th>
       </tr>
     </thread>
     <tbody>
@@ -122,26 +38,6 @@
         {% endfor %}
       </tbody>
     </table>
-  <!--
-  <table>
-    <thread>
-      <tr>
-        <th>Trn_date</th>
-        <th>Trn_type</th>
-        <th>Trn_amount</th>
-      </tr>
-    </thread>
-    <tbody>
 
-        {%for transaction in transactions %}
-        <tr>
-          <td>{{transaction.trn_date}}</td>
-          <td>{{transaction.trn_type}}</td>
-          <td>{{transaction.amount}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  -->
 {% endblock content %}
 </body>

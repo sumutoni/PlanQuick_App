@@ -136,37 +136,7 @@ class ProfilePageView(TemplateView):
       template_name = 'profile.html'
 
 def ChartPageView(request):
-    """
-    mydate  = []
-    transfers = []
-    received = []
-    merchant = []
-    withdrawal = []
-    bundle = []
-    deposit = []
-    paybill = []
-
-    tsf = Transactions.objects.filter(owner=request.user.email, trn_type='Customer Transfer')
-    rcv = Transactions.objects.filter(owner=request.user.email, trn_type='Received')
-    whd = Transactions.objects.filter(owner=request.user.email, trn_type='Withdrawal')
-    atb = Transactions.objects.filter(owner=request.user.email, trn_type='Airtime & Bumdle')
-    dp = Transactions.objects.filter(owner=request.user.email, trn_type='Deposit')
-    pb = Transactions.objects.filter(owner=request.user.email, trn_type='Pay Bill')
-    mct = Transactions.objects.filter(owner=request.user.email, trn_type='Merchant Payment')
-
-
-
-
-
-    transfers.append(tsf)
-    received.append(rcv)
-    withdrawal.append(whd)
-    bundle.append(atb)
-    deposit.append(dp)
-    merchant.append(mct)
-    paybill.append(pb)
-    """
-
+    # Retrieve transactions from sqlite and filter by type
     amt_sent = Transactions.objects.filter(owner=request.user.email, trn_type='Customer Transfer').aggregate(Sum('amount'))['amount__sum']
     amt_received = Transactions.objects.filter(owner=request.user.email, trn_type='Received').aggregate(Sum('amount'))['amount__sum']
     amt_withdrawn = Transactions.objects.filter(owner=request.user.email, trn_type='Withdrawal').aggregate(Sum('amount'))['amount__sum']
@@ -283,8 +253,8 @@ def ChartPageView(request):
 
 
 def StatPageView(request):
-
-    transactions = Transactions.objects.all().order_by('trn_type')
+    # Retrieve all user transactions
+    transactions = Transactions.objects.filter(owner=request.user.email).order_by('trn_type')
 
     context = {}
     context['transactions'] = transactions
@@ -293,6 +263,7 @@ def StatPageView(request):
 
 
 def UploadView(request):
+    #transaction data upload
     form = None
     if request.method == "POST":
         form = UploadForm(request.POST, request.FILES)
@@ -393,7 +364,6 @@ def UploadView(request):
                     dct['created_at'] = datetime.datetime.today().strftime('%Y-%m-%d')
 
 
-                    # this is to filter transaction id for mpesa i'll replace with momo
                     # Retrieve unique ref id
                     if re.search("Failed", i):
                         continue
@@ -446,8 +416,11 @@ def UploadView(request):
             for mydict in result:
                 try:
                     c, new = Transactions.objects.get_or_create(**mydict)
+                    if new:
+                        Transactions.save(c)
                 except:
                     continue
+                
             print(result)
 
         else:
@@ -461,6 +434,7 @@ def UploadView(request):
 
 
 def DeleteUpload(request):
+        # delete all user data
         dels = Transactions.objects.filter(owner=request.user.email)
         dels.delete()
         return redirect('/dashboard/')
