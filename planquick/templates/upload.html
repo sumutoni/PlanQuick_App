@@ -9,7 +9,6 @@
 </head>
 <body>
   <h1>Upload Page</h1>
-  <a href="{% url 'dashboard' %}">Dashboard</a>
   <form action="{% url 'upload' %} "method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <p>

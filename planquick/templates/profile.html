@@ -1,7 +1,15 @@
 {% extends 'dashboard.html' %}
-{% block title %}profile{% endblock title %}
+{% load static %}
+{% block title %}profile_edit{% endblock title %}
 {% block content %}
-<body>
-  <h1>Profile Page</h1>
-</body>
+	<div class="form-section">
+		<div class="form">
+			<form method="post">
+				<h3>Profile edit</h3>
+                {% csrf_token %}
+                {{ form.as_p }}
+				<button class="create">Update</button>
+			</form>
+		</div>
+	</div>
 {% endblock content %}

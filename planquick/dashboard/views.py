@@ -132,9 +132,6 @@ class AboutPageView(TemplateView):
 class ContactPageView(TemplateView):
      template_name = 'contacts.html'
 
-class ProfilePageView(TemplateView):
-      template_name = 'profile.html'
-
 def ChartPageView(request):
     # Retrieve transactions from sqlite and filter by type
     amt_sent = Transactions.objects.filter(owner=request.user.email, trn_type='Customer Transfer').aggregate(Sum('amount'))['amount__sum']
