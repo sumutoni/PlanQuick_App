@@ -28,10 +28,20 @@ For users wishing to directly use or customize the application.
 1. visit the planquick site.
 2. Signup or login to the app.
 3. Visit the upload section on the dashboard.
-	![user has entered text and is ready to eggify the input](planquick/static/images/dash.png)
+
+<p align="center">
+  <img src="https://github.com/sumutoni/PlanQuick_App/planquick/static/images/dash.png"
+       width="600"
+  />
+</p>
+
 4. Upload your transactions json file and sit back as we dynamically serve your transactions.
 5. You can view your data from dashboard, statements and charts section.
-	![user has entered text and is ready to eggify the input](planquick/static/images/chart.png)
+<p align="center">
+  <img src="https://github.com/sumutoni/PlanQuick_App/planquick/static/images/chart.png"
+       width="600"
+  />
+</p>
 6. To delete all your data from the site just click on the delete button.
 
 ## Features
