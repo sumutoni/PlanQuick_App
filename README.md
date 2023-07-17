@@ -30,7 +30,7 @@ For users wishing to directly use or customize the application.
 3. Visit the upload section on the dashboard.
 
 <p align="center">
-  <img src="https://github.com/sumutoni/PlanQuick_App/planquick/static/images/dash.png"
+  <img src="https://github.com/sumutoni/PlanQuick_App/tree/main/planquick/static/images/dash.png"
        width="600"
   />
 </p>
@@ -38,7 +38,7 @@ For users wishing to directly use or customize the application.
 4. Upload your transactions json file and sit back as we dynamically serve your transactions.
 5. You can view your data from dashboard, statements and charts section.
 <p align="center">
-  <img src="https://github.com/sumutoni/PlanQuick_App/planquick/static/images/chart.png"
+  <img src="https://github.com/sumutoni/PlanQuick_App/tree/main/planquick/static/images/chart.png"
        width="600"
   />
 </p>
