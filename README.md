@@ -1,6 +1,6 @@
-#PlanQuick
+# PlanQuick
 
-##What is PlanQuick
+## What is PlanQuick
 Planquick was a web app project collaboration between Charles and Stephanie. It was built on django framework for the back-end and html, css and js for the web application  front-end. sqlite was used for the application database. The web application was deployed to heruko.
 
 ## What it does
@@ -24,7 +24,7 @@ For users wishing to directly use or customize the application.
 
     localhost:8000
     
-##Usage
+## Usage
 1. visit the planquick site.
 2. Signup or login to the app.
 3. Visit the upload section on the dashboard.
