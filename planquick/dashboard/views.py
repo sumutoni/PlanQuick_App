@@ -273,13 +273,11 @@ def UploadView(request):
         Filters transactions
         """
 
-
         # check for mpesa transactions
         if data[0].get('address') == 'MPESA':
             for item in data:
                 dict1 = {}
                 dict1['filter'] = item.get('body')
-
                 for i in dict1.values():
                     dct = {}
 
@@ -293,28 +291,28 @@ def UploadView(request):
                         dct['ref_id'] = re.sub("confirmed.*|Confirmed.*", "",i)
 
                     # Categorize transactions
-                    if re.search("sent to SAFARICOM", i):
+                    if i.find("sent to SAFARICOM" or "sent to Safaricom") >-1:
                         dct['trn_type'] = "Airtime & Bundle"
-                    elif re.search("Give", i):
+                    elif i.find("Give") > -1:
                         dct['trn_type'] = "Deposit"
-                    elif re.search("sent to", i):
-                        dct['trn_type'] = "Customer Transfer"
-                    elif re.search("transferred to", i):
-                        dct['trn_type'] = "Transfer"
-                    elif re.search("Withdraw", i):
-                        dct['trn_type'] = "Withdrawal"
-                    elif re.search("for account", i):
+                    elif i.find("sent to" and "for account") > -1:
                         dct['trn_type'] = "Pay Bill"
-                    elif re.search("paid to", i):
+                    elif i.find("have received") > -1:
+                        dct['trn_type'] = "Received"
+                    elif i.find("transferred to") > -1:
+                        dct['trn_type'] = "Transfer"
+                    elif i.find("Withdraw") > -1:
+                        dct['trn_type'] = "Withdraw"
+                    elif i.find("paid to") > -1:
                         dct['trn_type'] = "Merchant Payment"
-                    elif re.search("Insufficient funds", i):
+                    elif i.find("Insufficient funds") > -1:
                         continue
-                    elif re.search("insufficient funds", i):
+                    elif i.find("insufficient funds") > -1:
                         continue
-                    elif re.search("Failed.*", i):
+                    elif i.find("Failed.*") > -1:
                         continue
                     else:
-                        dct['trn_type'] = "Received"
+                        dct['trn_type'] = "Customer Transfer"
 
                     # Retrieve transaction amount
                     ns = re.sub(",", "", i)
@@ -375,8 +373,8 @@ def UploadView(request):
                     elif i.find("transferred to") > -1:
                         dct['trn_type'] = "Customer Transfer"
                     elif i.find("withdrawn") > -1:
-                        dct['trn_type'] = "Withdraw"
-                    elif i.find("paid to") > -1:
+                        dct['trn_type'] = "Withdrawal"
+                    elif i.find("Your payment") > -1:
                         dct['trn_type'] = "Merchant Payment"
                     elif i.find("Insufficient funds") > -1:
                         continue
@@ -413,8 +411,6 @@ def UploadView(request):
             for mydict in result:
                 try:
                     c, new = Transactions.objects.get_or_create(**mydict)
-                    if new:
-                        Transactions.save(c)
                 except:
                     continue
                 
